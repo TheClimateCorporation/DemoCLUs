@@ -13,9 +13,7 @@ import GeoFeatures
 
 class ViewController: UIViewController, LoginWithClimateDelegate, MKMapViewDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
-    
-    var loginViewController: LoginWithClimateButton!
+    @IBOutlet var mapView: MKMapView!
     
     // MARK: - ViewController functions
     
@@ -25,7 +23,7 @@ class ViewController: UIViewController, LoginWithClimateDelegate, MKMapViewDeleg
 
         // Set up button
         
-        loginViewController = LoginWithClimateButton(clientId: "", clientSecret: "")
+        let loginViewController = LoginWithClimateButton(clientId: "", clientSecret: "")
         loginViewController.delegate = self
         
         view.addSubview(loginViewController.view)
@@ -124,7 +122,7 @@ class ViewController: UIViewController, LoginWithClimateDelegate, MKMapViewDeleg
     func fetchCLUs(myAccessToken: String, corners: (neCoord: CLLocationCoordinate2D, swCoord: CLLocationCoordinate2D), completion: ([String: AnyObject] -> Void)) {
         let (neCoord, swCoord) = corners
 
-        let components: NSURLComponents = NSURLComponents(string: "https://hackillinois.climate.com/api/clus")!
+        let components: NSURLComponents = NSURLComponents(string: "https://hack.climate.com/api/clus")!
         components.queryItems = [NSURLQueryItem(name: "ne_lat", value: neCoord.latitude.description),
                                  NSURLQueryItem(name: "ne_lon", value: neCoord.longitude.description),
                                  NSURLQueryItem(name: "sw_lat", value: swCoord.latitude.description),
